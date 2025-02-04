@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Stepan Dordiai">
+    <title>Days Together</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            text-align: center;
+            font-family: "Comfortaa", serif;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            height: 100dvh;
+            overflow: hidden;
+
+        }
+
+        p {
+            font-size: 4rem;
+            font-weight: 300;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Days Together</h1>
+    <div>
+        <div>
+            <p id="day"></p>
+            <span>days</span>
+        </div>
+        <div>
+            <p id="hour"></p>
+            <span>hours</span>
+        </div>
+        <div>
+            <p id="minute"></p>
+            <span>minutes</span>
+        </div>
+        <div>
+            <p id="second"></p>
+            <span>seconds</span>
+        </div>
+    </div>
+    <script>
+        const day = document.getElementById('day')
+        const hour = document.getElementById('hour')
+        const minute = document.getElementById('minute')
+        const second = document.getElementById('second')
+
+        function updateTimer() {
+            const dateNow = new Date()
+            const firstDate = new Date('March 23, 2021 00:00:00')
+
+            const difference = dateNow - firstDate
+
+            const days = Math.floor(difference / 1000 / 60 / 60 / 24)
+            const hours = Math.floor(difference / 1000 / 60 / 60) % 24
+            const minutes = Math.floor(difference / 1000 / 60) % 60
+            const seconds = Math.floor(difference / 1000) % 60
+
+            day.textContent = days
+            hour.textContent = hours < 10 ? '0' + hours : hours
+            minute.textContent = minutes < 10 ? '0' + minutes : minutes
+            second.textContent = seconds < 10 ? '0' + seconds : seconds
+        }
+
+        updateTimer()
+
+        setInterval(updateTimer, 1000)
+    </script>
+</body>
+
+</html>
